@@ -1,0 +1,8 @@
+{% extends "utilisateurs/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} <title>MonEtab - Definir un Parametre</title> {% endblock %}
+{% block titre %} <h2 class="titre"> Definir un Parametre</h2> {% endblock %}
+
+{% csrf_token %}
+            {% block nav%} <h1></h1>{% endblock%}
+           {% block form %} {{formsetting | crispy}} {% endblock %}

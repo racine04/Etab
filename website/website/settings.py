@@ -38,14 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'eleve',
-    'professeurs',
-    'utilisateurs',
-    'connexion',
+    
+    'student',
+    'professors',
+    'user',
+    'login',
     'dashboard',
-    'rapport',
+    'report',
     'crispy_forms',
     'crispy_bootstrap4',
+    'base',
+    'school',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +88,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'etab_db',
+        'NAME': 'etab_bd',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

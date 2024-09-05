@@ -19,10 +19,12 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('eleve/', include('eleve.urls')),
-    path('prof/', include('professeurs.urls')),
-    path('utilisateur/', include('utilisateurs.urls')),
-    path('', include('connexion.urls')),
-    path('dashboard', include('dashboard.urls')),
-    path('rapport', include('rapport.urls')),    # Chemin vers l'application `eleve`
+    path('student/', include('student.urls')),
+    path('', include('school.urls')),
+    path('prof/', include('professors.urls.prof')),
+    path('user/', include('user.urls.utilisateur')),
+    path('login/', include('login.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('report/', include('report.urls')), 
+    path('base/', include('base.urls')),
 ]

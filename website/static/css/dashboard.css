@@ -292,8 +292,8 @@ header a {
 }
 
 #myPieChart {
-    width: 150px;
-    height: 150px;
+    width: 350px;
+    height: 350px;
     /* Pour centrer le diagramme dans la carte */
     display: block;
     margin: 0 auto;
