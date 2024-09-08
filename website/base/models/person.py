@@ -6,9 +6,9 @@ from ..models.helpers.datemodel import DateTimeModel
 
 
 GENDER = [
-    ('F', 'Female'),
-    ('M', 'Male'),
-    ('O', 'Other'),
+    ('F', 'WOMEN'),
+    ('M', 'MEN'),
+    ('O', 'OTHER'),
 ]
 
 class Person(DateTimeModel):

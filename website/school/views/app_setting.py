@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from school.forms import AppSettingForm
 from school.models.app_settings import AppSettingModel
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='connexion:signup')
 def addsetting(request):
     
     if request.method == 'POST':
@@ -20,11 +21,13 @@ def addsetting(request):
     else :
        return redirect('school:addschool')#ajouter ecole    
 
-
+@login_required(login_url='connexion:signup')
 def settinglist(request):
     eleves = AppSettingModel.objects.all()
     return render(request, 'setting/settinglist.html', {'eleves': eleves})
 
+
+@login_required(login_url='connexion:signup')
 def modifiersetting(request, id):
     setting = get_object_or_404(AppSettingModel, id=id)
     if request.method == 'POST':
@@ -36,6 +39,8 @@ def modifiersetting(request, id):
         form = AppSettingForm(instance=setting)
     return render(request, 'school/modifierschool.html', {'form': form})
 
+
+@login_required(login_url='connexion:signup')
 def check_settings(request):
     app_setting= AppSettingModel.objects.all()
     if not app_setting:
@@ -45,6 +50,8 @@ def check_settings(request):
        return redirect('school:checkschool')#verification de l'ecole
 
 
+
+@login_required(login_url='connexion:signup')
 def supprimersetting(request, id):
     settings = get_object_or_404(AppSettingModel, id=id)
     settings.delete()

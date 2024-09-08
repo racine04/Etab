@@ -20,9 +20,9 @@
                 <li><a href="{% url 'prof:proflist' %}"><i class="fas fa-chalkboard-teacher" style="color: rgb(248, 59, 75);"></i> Professors</a></li>
                 <li><a href="{% url 'utilisateur:listutilisateur' %}"><i class="fas fa-user" style="color: rgb(248, 59, 75);"></i> Users</a></li>
                 <li><a href="{% url 'rapport:rapport' %}" ><i class="fas fa-file-alt" style="color: rgb(248, 59, 75);"></i> Report</a></li>
-                <li><a href="{% url 'school:listschool' %}"><i class="fas fa-graduation-cap" style="color: rgb(248, 59, 75);"></i> School</a></li>
+                <li><a href="{% url 'school:listschool' %}"><i class="fas fa-graduation-cap" style="color: rgb(248, 59, 75);"></i> Settings School</a></li>
                 <li><a href="{% url 'adress:adresslist' %}" class="active"><i class="fas fa-map-marker-alt" style="color: rgb(248, 59, 75);"></i> Adress</a></li>
-                <li><a href="{% url 'school:settinglist' %}"><i class="fas fa-cog" style="color: rgb(248, 59, 75);"></i> Settings</a></li>
+                <li><a href="{% url 'school:settinglist' %}"><i class="fas fa-cog" style="color: rgb(248, 59, 75);"></i> Settings App</a></li>
                 <li><a href="{% url 'connexion:signin' %}"><i class="fas fa-sign-out-alt" style="color: rgb(248, 59, 75);"></i> Logout</a></li>
             </ul>
         </div>
@@ -45,7 +45,7 @@
                         <tr>
                             <td>{{adress.country}}, {{adress.street}}, {{adress.city}} </td>
                             
-                            <td><a href="{% url 'prof:modifieradress' adress.id%}" class="modifier" >Modifier</a><a href="{% url 'prof:supprimeradress' adress.id%}" class="supprimer" onclick="return confirmerSuppression();">Supprimer</a></td>
+                            <td><a href="{% url 'adress:modifieradress' adress.id%}" class="modifier" >Modifier</a><a href="{% url 'adress:supprimeradress' adress.id%}" class="supprimer" onclick="return confirmerSuppression();">Supprimer</a></td>
                         </tr>
 
                         {% endfor %}

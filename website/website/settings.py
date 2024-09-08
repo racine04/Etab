@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #bibliotheque
+
+    'rest_framework',
+
+    #Mes apps
     
     'student',
     'professors',
@@ -49,6 +55,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'base',
     'school',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +153,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS ='bootstrap4'
 CRISPY_TEMPLATE_PACK ='bootstrap4'
+
+PDFKIT_CONFIG = {
+    'pdfkit': {
+        'binary': 'C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe',  
+    }
+}
+
 
 APPEND_SLASH = True
 
