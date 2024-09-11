@@ -1,0 +1,8 @@
+{% extends "utilisateurs/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} <title>MonEtab - Ajouter une Ecole</title> {% endblock %}
+{% block titre %} <h2 class="titre"> Ajouter une Ecole</h2> {% endblock %}
+{% block nav%} <h1></h1>{% endblock%}
+{% csrf_token %}
+            
+           {% block form %} {{form | crispy}} {% endblock %}

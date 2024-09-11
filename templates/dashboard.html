@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - MonEtab</title>
+    {%load static%}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-pencil-alt"></i>MonEtab</h1>
+            <ul>
+                <li><a href="{% url 'dashboard:dashboard' %}" class="active"><i class="fas fa-tachometer-alt" style="color: rgb(248, 59, 75);"></i> Dashboard</a></li>
+                <li><a href="{% url 'eleve:elevelist' %}" ><i class="fas fa-book-reader" style="color: rgb(248, 59, 75);"></i> Students</a></li>
+                <li><a href="{% url 'prof:proflist' %}" ><i class="fas fa-chalkboard-teacher" style="color: rgb(248, 59, 75);"></i> Professors</a></li>
+                <li><a href="{% url 'utilisateur:listutilisateur' %}" ><i class="fas fa-user" style="color: rgb(248, 59, 75);"></i> Users</a></li>
+                <li><a href="{% url 'rapport:rapport' %}" ><i class="fas fa-file-alt" style="color: rgb(248, 59, 75);"></i> Report</a></li>
+                <li><a href="{% url 'school:listschool' %}"><i class="fas fa-graduation-cap" style="color: rgb(248, 59, 75);"></i> Settings School</a></li>
+                <li><a href="{% url 'adress:adresslist' %}"><i class="fas fa-map-marker-alt" style="color: rgb(248, 59, 75);"></i> Adress</a></li>
+                <li><a href="{% url 'school:settinglist' %}"><i class="fas fa-cog" style="color: rgb(248, 59, 75);"></i> Settings App</a></li>
+                <li><a href="{% url 'connexion:logout' %}"><i class="fas fa-sign-out-alt" style="color: rgb(248, 59, 75);"></i> Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="main">
+            <h2>Tableau de bord </h2>
+            <li><a href="{% url 'school:settinglist' %}" style="color: rgb(72, 71, 71);"><i class="fas fa-plus-circle" ></i> Definir des parametres </a></li>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <i class="fas fa-book-reader icon"></i>
+                        <h3>Nombre d'élève: <span id="artisanCount"> {{nombre_eleve}} </span></h3>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <i class="fas fa-chalkboard-teacher icon"></i>
+                        <h3>Nombre de professeur: <span id="clientCount">{{nombre_professeur}}</span></h3>
+                    </div>
+                </div>
+                    <div class="col-md-6">
+                        <div class="card d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                            <i class="fas fa-user icon" style="width: 150px;"></i>
+                            <h3>Nombre d'utilisateur: <span id="clientCount">{{nombre_utilisateur}}</span></h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card d-flex flex-column align-items-center justify-content-center" style="height: 100%;">
+                            <canvas id="myPieChart"></canvas>
+                            <h3>Elèves par genre <span id="clientCount"></span></h3>
+                        </div>
+                    </div>               
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Chart.js before the initialization script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables JavaScript pour les données Django
+            var nombreGarcons = {{ nombre_garcons }};
+            var nombreFilles = {{ nombre_filles }};
+    
+            var ctx = document.getElementById('myPieChart').getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Garçons', 'Filles'],
+                    datasets: [{
+                        label: 'Élèves par genre',
+                        data: [nombreGarcons, nombreFilles],  // Utilisez les variables JavaScript ici
+                        backgroundColor: [
+                            'red',  // Couleur pour les garçons
+                            'rgb(87, 59, 248)'   // Couleur pour les filles
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + ' élèves';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

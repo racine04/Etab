@@ -1,0 +1,7 @@
+{% extends "utilisateurs/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %} <title>MonEtab - Modifier Utilisateur</title> {% endblock %}
+{% block titre %} <h2 class="titre">Modifier un Utilisateur</h2> {% endblock %}
+{% csrf_token %}
+            
+           {% block form %} {{form | crispy}} {% endblock %}
